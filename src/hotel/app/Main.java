@@ -13,7 +13,7 @@ public class Main {
 		//Khach_ap.nhapThongTinKhach();
 		//Khach_ap.suaThongTinKhach();
 		//LoaiPhong_ap.nhapThongTinLoaiPhong();
-		Phong_ap.nhapThongTinPhong();
+		Phong_ap.suaThongTinPhong();
 	}
 
 }

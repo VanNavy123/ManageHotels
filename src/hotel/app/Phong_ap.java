@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.tools.javac.util.Convert;
+
 
 import hotel.db.Khach_db;
 import hotel.db.LoaiPhong_db;
@@ -85,11 +85,12 @@ public class Phong_ap {
 			ph = Phong_db.selectOneMP(ma);
 			
 			if (ph != null) {
-				System.out.println("Thong tin phong: " + ph.toString());
+				System.out.println("Thong tin phong: " + ph.get_maPhong() + "\t" + ph.get_trangThai()
+							+ "\t" + ph.get_maLoaiPhong() + "\t" + ph.get_moTa());
 				
 				System.out.println("\n\n                  ===============================================");
 				System.out.println("	          =              SUA THONG TIN PHONG            =");
-				System.out.println("	          ===============================================\n");
+				System.out.println("	          ===============================================");
 				System.out.println("	          =                                             =");
 				System.out.println("	          =              1. Sua trang thai              =");
 				System.out.println("	          =              2. Sua mo ta                   =");
@@ -106,7 +107,7 @@ public class Phong_ap {
 		        int stt_int = 0;
 		        String maLoaiPhong_moi = "";
 		        String mota = "";
-		        ArrayList<Phong> arr;
+		        ArrayList<LoaiPhong> arr;
 				
 				luachon = sc.nextLine();
 				switch (luachon)
@@ -119,7 +120,8 @@ public class Phong_ap {
 							{
 								System.out.println("\n\t\t     Nhap trang thai moi: ");
 								String trangThai = sc.nextLine();
-								trangThai_moi = Integer.parseInt(trangThai)
+								trangThai_moi = Integer.parseInt(trangThai);
+								flag = false;
 							}
 							catch (Exception e) 
 							{
@@ -152,25 +154,25 @@ public class Phong_ap {
 						System.out.println("	          3. SUA MA LOAI PHONG");
 						System.out.println("\n\t\t     Danh sach ma loai phong: ");
 						
-						arr = Phong_db.Select();
+						arr = LoaiPhong_db.Select();
 						
 				        for (int i = 0; i < arr.size(); i++) 
 				        {
-							System.out.println("\n\t   " + (i + 1) + ". "+ arr.get(i).get_maLoaiPhong());
+							System.out.println("\t   " + (i + 1) + ". "+ arr.get(i).get_maLoaiPhong());
 						}
-				        System.out.println("\n\t   0. Thoat");
+				        System.out.println("\t   0. Thoat");
 				        
 				        //Chon ma loai phong moi:
 						do {
 							try
 							{
-								System.out.println("\n\t\t     Chon ma loai phong theo so thu tu: ");
+								System.out.println("\t\t     Chon ma loai phong theo so thu tu: ");
 								String stt = sc.nextLine();
 								stt_int = Integer.parseInt(stt);
 								
 								if (stt_int > arr.size() || stt_int < 0)
 								{
-									System.out.println("\n\t   Chon sai roi!");
+									System.out.println("\t   Chon sai roi!");
 									flag = true;
 								}
 								else
@@ -180,6 +182,7 @@ public class Phong_ap {
 									{
 										maLoaiPhong_moi = arr.get(stt_int - 1).get_maLoaiPhong();
 										ph.set_maLoaiPhong(maLoaiPhong_moi);
+										flag = false;
 										if (Phong_db.Update(ph))
 										{
 											System.out.println("Succes!");
@@ -206,7 +209,8 @@ public class Phong_ap {
 							{
 								System.out.println("\n\t\t     Nhap trang thai moi: ");
 								String trangThai = sc.nextLine();
-								trangThai_moi = Integer.parseInt(trangThai)
+								trangThai_moi = Integer.parseInt(trangThai);
+								flag = false;
 							}
 							catch (Exception e) 
 							{
@@ -224,11 +228,11 @@ public class Phong_ap {
 						// Nhap ma loai phong
 						System.out.println("\n\t\t     Danh sach ma loai phong: ");
 						
-						arr = Phong_db.Select();
+						arr = LoaiPhong_db.Select();
 						
 				        for (int i = 0; i < arr.size(); i++) 
 				        {
-							System.out.println("\n\t   " + (i + 1) + ". "+ arr.get(i).get_maLoaiPhong());
+							System.out.println("\t   " + (i + 1) + ". "+ arr.get(i).get_maLoaiPhong());
 						}
 				        System.out.println("\n\t   0. Thoat");
 				        
@@ -236,7 +240,7 @@ public class Phong_ap {
 						do {
 							try
 							{
-								System.out.println("\n\t\t     Chon ma loai phong theo so thu tu: ");
+								System.out.println("\t\t     Chon ma loai phong theo so thu tu: ");
 								String stt = sc.nextLine();
 								stt_int = Integer.parseInt(stt);
 								
@@ -252,6 +256,7 @@ public class Phong_ap {
 									{
 										maLoaiPhong_moi = arr.get(stt_int - 1).get_maLoaiPhong();
 										ph.set_maLoaiPhong(maLoaiPhong_moi);
+										flag = false;
 									}
 								}
 							}
