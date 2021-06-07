@@ -161,6 +161,42 @@ public class Khach_db
 		return tmp;
 	}
 	
+	//Ham xoa
+	public static boolean Delete(String maKhach) 
+	{
+		boolean tmp = false;
+		Connection connect = null;
+		PreparedStatement prStmt = null;
+		String insertSQL = "DELETE FROM Khach WHERE MaKhach = ?";
+		
+		try 
+		{
+			connect = Provide_db.getConnection();
+			
+			prStmt = connect.prepareStatement(insertSQL);
+			prStmt.setString(1, maKhach);
+			if (prStmt.executeUpdate() > 0)
+			{
+				tmp = true;
+			}
+			else
+			{
+				tmp = false;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			tmp = false;
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			Provide_db.closeStatment(prStmt);
+			Provide_db.closeConnection(connect);
+		}
+		
+		return tmp;
+	}
 	
 	public static boolean kiemTraTonTaiKhach(String maKhach) {
 		Connection connect = null;
@@ -189,6 +225,7 @@ public class Khach_db
 		
 		return existKhachFlag;
 	}
+	
 	public static Khach selectOneMK(String maKh) {
 		Khach kh = null;
 		String query = "SELECT * FROM Khach WHERE MaKhach = ?";
