@@ -161,6 +161,7 @@ public class Khach_db
 		return tmp;
 	}
 	
+	
 	public static boolean kiemTraTonTaiKhach(String maKhach) {
 		Connection connect = null;
 		PreparedStatement prStmt = null;

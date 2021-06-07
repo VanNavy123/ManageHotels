@@ -94,12 +94,11 @@ public class Khach_ap
 			System.out.print("Nhap ma khach can sua: ");
 			maKhach = sc.nextLine();
 			
-			//Kiem tra ton tai khach
-			existKhachFlag = Khach_db.kiemTraTonTaiKhach(maKhach);
-			if (existKhachFlag == true) {
-				System.out.println("Thong tin khach hang da ton tai trong he thong");
-				kh = Khach_db.selectOneMK(maKhach);
-				System.out.print(kh.toString());
+			kh = Khach_db.selectOneMK(maKhach);
+			
+			if (kh != null) {
+				System.out.println("Thong tin khach hang: " + kh.toString());
+				
 				System.out.println("\n\n                  ===============================================");
 				System.out.println("	          =              SUA THONG TIN KHACH            =");
 				System.out.println("	          ===============================================\n");
