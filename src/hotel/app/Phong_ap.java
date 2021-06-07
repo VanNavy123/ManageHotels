@@ -106,6 +106,7 @@ public class Phong_ap {
 		        int stt_int = 0;
 		        String maLoaiPhong_moi = "";
 		        String mota = "";
+		        ArrayList<Phong> arr;
 				
 				luachon = sc.nextLine();
 				switch (luachon)
@@ -151,7 +152,7 @@ public class Phong_ap {
 						System.out.println("	          3. SUA MA LOAI PHONG");
 						System.out.println("\n\t\t     Danh sach ma loai phong: ");
 						
-						ArrayList<Phong> arr = Phong_db.Select();
+						arr = Phong_db.Select();
 						
 				        for (int i = 0; i < arr.size(); i++) 
 				        {
@@ -217,20 +218,61 @@ public class Phong_ap {
 						
 						// Nhap mo ta moi:
 						System.out.println("\n\t\t     Nhap mo ta moi: ");
-						String mota = sc.nextLine();
-
+						mota = sc.nextLine();
 						ph.set_moTa(mota);
 						
+						// Nhap ma loai phong
+						System.out.println("\n\t\t     Danh sach ma loai phong: ");
 						
-						if (Khach_db.update(kh))
+						arr = Phong_db.Select();
+						
+				        for (int i = 0; i < arr.size(); i++) 
+				        {
+							System.out.println("\n\t   " + (i + 1) + ". "+ arr.get(i).get_maLoaiPhong());
+						}
+				        System.out.println("\n\t   0. Thoat");
+				        
+				        //Chon ma loai phong moi:
+						do {
+							try
+							{
+								System.out.println("\n\t\t     Chon ma loai phong theo so thu tu: ");
+								String stt = sc.nextLine();
+								stt_int = Integer.parseInt(stt);
+								
+								if (stt_int > arr.size() || stt_int < 0)
+								{
+									System.out.println("\n\t   Chon sai roi!");
+									flag = true;
+								}
+								else
+								{
+									if (stt_int == 0) break;
+									else
+									{
+										maLoaiPhong_moi = arr.get(stt_int - 1).get_maLoaiPhong();
+										ph.set_maLoaiPhong(maLoaiPhong_moi);
+									}
+								}
+							}
+							catch (Exception e) 
+							{
+								flag = true;
+								System.out.println("\n\t   Yeu cau chi nhap chu so!");
+							}
+						} while (flag);
+						
+						//update
+						if (Phong_db.Update(ph))
 						{
 							System.out.println("Succes!");
 						}
 						else System.out.println("False!");
+						
 						break;
 						
 					default:
-						System.out.println("\nLua chon khong hop le. Xin kiem tra lai!");
+						System.out.println("\nGoodbye!");
 						break;
 				}
 
@@ -239,7 +281,7 @@ public class Phong_ap {
 				
 			}
 			
-		} while (existKhachFlag == false);
+		} while (ph == null);
 		
 		
 	}
