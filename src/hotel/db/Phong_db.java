@@ -54,7 +54,35 @@ public class Phong_db {
 	
 	public static ArrayList<Phong> Select() {
 		ArrayList<Phong> List_P = new ArrayList<Phong>();
+		String query = "Select * from Phong";
 		
+		Connection connect = null;
+		PreparedStatement prStmt = null;
+
+		try {
+			connect = Provide_db.getConnection();
+			prStmt = connect.prepareStatement(query);
+			ResultSet rs = prStmt.executeQuery();
+			while (rs.next()) {
+				String maPhong = rs.getString("MaPhong");
+				int trangThai = rs.getInt("TrangThai");
+				String maLoaiPhong = rs.getString("MaLoaiPhong");
+				String moTa = rs.getString("MoTa");
+				
+				Phong ph = new Phong(maPhong, trangThai, maLoaiPhong, moTa);
+				List_P.add(ph);
+			}
+		
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			Provide_db.closeStatment(prStmt);
+			Provide_db.closeConnection(connect);
+		}
 		return List_P;
 	}
 	

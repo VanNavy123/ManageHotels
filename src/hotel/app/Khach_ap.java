@@ -87,7 +87,6 @@ public class Khach_ap
 	public static void suaThongTinKhach() {
 		//Nhap thong tin khach
 		Khach kh = null;
-		boolean existKhachFlag = false;
 		String maKhach = "";
 		
 		do {
@@ -201,7 +200,7 @@ public class Khach_ap
 				
 			}
 			
-		} while (existKhachFlag == false);
+		} while (kh == null);
 		
 		
 	}
