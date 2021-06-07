@@ -2,7 +2,7 @@ package hotel.oop;
 
 public class Phong {
 	private String maPhong;
-	private String trangThai;
+	private int trangThai;
 	private String maLoaiPhong;
 	private String moTa;
 
@@ -17,12 +17,12 @@ public class Phong {
 	}
 
 
-	public String get_trangThai() {
+	public int get_trangThai() {
 		return trangThai;
 	}
 
 
-	public void set_trangThai(String trangThai) {
+	public void set_trangThai(int trangThai) {
 		this.trangThai = trangThai;
 	}
 
@@ -46,7 +46,7 @@ public class Phong {
 	}
 	
 
-	public Phong(String maPhong, String trangThai, String maLoaiPhong, String moTa) {
+	public Phong(String maPhong, int trangThai, String maLoaiPhong, String moTa) {
 		super();
 		this.maPhong = maPhong;
 		this.trangThai = trangThai;

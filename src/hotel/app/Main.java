@@ -12,7 +12,8 @@ public class Main {
 		//System.out.println(ThuePhong_ap.creatMaThuePhong());
 		//Khach_ap.nhapThongTinKhach();
 		//Khach_ap.suaThongTinKhach();
-		LoaiPhong_ap.nhapThongTinLoaiPhong();
+		//LoaiPhong_ap.nhapThongTinLoaiPhong();
+		Phong_ap.nhapThongTinPhong();
 	}
 
 }

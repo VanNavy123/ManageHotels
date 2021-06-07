@@ -10,7 +10,7 @@ import hotel.oop.*;
 public class LoaiPhong_ap {
 	private static Scanner sc = new Scanner(System.in);
 
-	//Them moi khach hang:
+	//Them moi loai phong:
 		public static void nhapThongTinLoaiPhong() {
 			System.out.println("======Nhap thong tin Loai phong=======");
 			
