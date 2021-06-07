@@ -126,6 +126,7 @@ public class Phong_ap {
 							catch (Exception e) 
 							{
 								flag = true;
+								System.out.println("\n\t\t     Trang thai khong dung dinh dang!");
 							}
 						} while (flag);
 
@@ -215,6 +216,7 @@ public class Phong_ap {
 							catch (Exception e) 
 							{
 								flag = true;
+								System.out.println("\n\t\t     Trang thai khong dung dinh dang!");
 							}
 						} while (flag);
 
