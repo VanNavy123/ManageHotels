@@ -10,10 +10,12 @@ public class Main {
 		//System.out.println(Khach_db.selectMK_max());
 		//System.out.println(Phong_ap.creatMaPhong());
 		//System.out.println(ThuePhong_ap.creatMaThuePhong());
-		//Khach_ap.nhapThongTinKhach();
+		Khach_ap.nhapThongTinKhach();
 		//Khach_ap.suaThongTinKhach();
 		//LoaiPhong_ap.nhapThongTinLoaiPhong();
-		Phong_ap.suaThongTinPhong();
+//		Phong_ap.suaThongTinPhong();
+		
+		
 	}
 
 }

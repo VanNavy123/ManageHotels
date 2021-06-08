@@ -1,4 +1,5 @@
 package hotel.app;
+import java.sql.Date;
 
 public class CheckDataInput {
 	// Ham chuan hoa xau ho ten nhap vao:
@@ -16,5 +17,20 @@ public class CheckDataInput {
                 st+=" ";
         }
         return st;
+    }
+    
+    //Ham chuan hoa ngay thang nam viet nam:
+    public static Date ConvertToDateVN(String str)
+    {
+    	try
+    	{
+        	String[] s = str.split("/");
+        	Date d = Date.valueOf(s[2] + "-" + s[1] + "-" + s[0]);
+        	return d;
+    	}
+    	catch (Exception e) {
+    		return null;
+		}
+
     }
 }

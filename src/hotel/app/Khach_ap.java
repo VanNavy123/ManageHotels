@@ -17,18 +17,39 @@ public class Khach_ap
 		System.out.println("======Nhap thong tin Khach muon thue phong=======");
 		
 		String choice = "";
-		do {
-			//Nhap thong tin khach
-			System.out.print("Nhap Ho Ten: ");
-			String hoTen = sc.nextLine();
-			System.out.print("Nhap CMND: ");
-			String cmnd = sc.nextLine();
-			System.out.print("Nhap dia chi thuong tru: ");
-			String diaChi = sc.nextLine();
-			System.out.print("Nhap ngay sinh (Nhap nam/thang/ngay): ");
-			String ngaySinhStr = sc.nextLine();
 
-			Date ngaySinh = Date.valueOf(ngaySinhStr);
+		do {			
+			//Nhap thong tin khach
+			System.out.println("Nhap Ho Ten: ");
+			String hoTen = sc.nextLine();
+			System.out.println("Nhap CMND: ");
+			String cmnd = sc.nextLine();
+			System.out.println("Nhap dia chi thuong tru: ");
+			String diaChi = sc.nextLine();
+
+			//Nhap ngay thang nam sinh:
+			boolean flag = false;
+			Date ngaySinh = null;
+			do
+			{
+				try
+				{
+					System.out.println("Nhap ngay sinh (Nhap ngay/thang/nam): ");
+					String ngaySinhStr = sc.nextLine();
+					ngaySinh = CheckDataInput.ConvertToDateVN(ngaySinhStr);
+					if (ngaySinh == null) 
+						{
+							flag = true;
+							System.out.println("Nhap ngay sinh khong dung dinh dang!");
+						}
+					else flag = false;
+				}
+				catch (Exception e) {
+					flag = true;
+					System.out.println("Nhap ngay sinh khong dung dinh dang!");
+				}
+
+			} while (flag);
 			
 			Khach kh = new Khach(creatMaKhach(), CheckDataInput.chuannHoa_str(hoTen), cmnd, 
 									CheckDataInput.chuannHoa_str(diaChi), ngaySinh);

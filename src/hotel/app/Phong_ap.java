@@ -123,7 +123,7 @@ public class Phong_ap {
 								trangThai_moi = Integer.parseInt(trangThai);
 								flag = false;
 							}
-							catch (Exception e) 
+							catch (Exception e)
 							{
 								flag = true;
 								System.out.println("\n\t\t     Trang thai khong dung dinh dang!");
@@ -289,8 +289,6 @@ public class Phong_ap {
 			}
 			
 		} while (ph == null);
-		
-		
 	}
 	
 }

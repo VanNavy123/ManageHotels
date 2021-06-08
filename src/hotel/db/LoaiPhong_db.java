@@ -187,9 +187,39 @@ public class LoaiPhong_db {
 		return tmp;
 	}
 	
-	public static boolean delete() {
-		//Nội dung hàm Delete
+	public static boolean delete(String ma) {
+		boolean tmp = false;
+		Connection connect = null;
+		PreparedStatement prStmt = null;
+		String insertSQL = "DELETE FROM LoaiPhong WHERE MaLoaiPhong = ?";
 		
-		return true;
+		try 
+		{
+			connect = Provide_db.getConnection();
+			
+			prStmt = connect.prepareStatement(insertSQL);
+			prStmt.setString(1, ma);
+			if (prStmt.executeUpdate() > 0)
+			{
+				tmp = true;
+			}
+			else
+			{
+				tmp = false;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			tmp = false;
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			Provide_db.closeStatment(prStmt);
+			Provide_db.closeConnection(connect);
+		}
+		
+		return tmp;
 	}
+	
 }
