@@ -58,4 +58,11 @@ public class Phong {
 	public Phong() {
 		super();
 	}
+
+
+	@Override
+	public String toString() {
+		return  maPhong + "  "+ maLoaiPhong + "  " + moTa ;
+	}
+	
 }

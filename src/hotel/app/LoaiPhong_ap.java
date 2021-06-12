@@ -32,7 +32,7 @@ public class LoaiPhong_ap {
 				do {
 					try
 					{
-						System.out.println("Nhap gia phong: ");
+						System.out.print("Nhap gia phong: ");
 						String giaPhong_input = sc.nextLine();
 						giaPhong = Integer.parseInt(giaPhong_input);
 						flag = false;
@@ -48,7 +48,7 @@ public class LoaiPhong_ap {
 				do {
 					try
 					{
-						System.out.println("Nhap gia phong: ");
+						System.out.print("Nhap gia phong: ");
 						String soNguoi_input = sc.nextLine();
 						soNguoiToiDa = Integer.parseInt(soNguoi_input);
 						flag = false;
@@ -63,15 +63,15 @@ public class LoaiPhong_ap {
 				LoaiPhong lp = new LoaiPhong(creatMaLoaiphong(), loaiPhong, giaPhong, soNguoiToiDa);
 				if (LoaiPhong_db.insert(lp))
 				{
-					System.out.println("Them moi loai phong thanh cong!");
+					System.out.print("Them moi loai phong thanh cong!");
 				}
 				else
 				{
-					System.out.println("Them moi khach hang that bai. Vui long kiem tra lai!");
+					System.out.print("Them moi loai phong that bai. Vui long kiem tra lai!");
 				}
 				
 				//Cho lua chon co nhap tiep khong
-				System.out.print("Ban co muon nhap them khach hang nao nua khong (Y/N): ");
+				System.out.print("Ban co muon nhap them loai phong nua khong (Y/N): ");
 				luaChon = sc.nextLine();
 			} while ("Y".equalsIgnoreCase(luaChon));
 		}
@@ -102,20 +102,20 @@ public class LoaiPhong_ap {
 			return maLoaiPhong;
 		}
 		
-		//Sua thong tin phong
-		public static void suaThongTinPhong() {
-			LoaiPhong ph = null;
+		//Sua thong tin Loai phong
+		public static void suaThongTinLoaiPhong() {
+			LoaiPhong lp = null;
 			String ma = "";
 			
 			do {
 				System.out.print("Nhap ma loai phong can sua: ");
 				ma = sc.nextLine();
 				
-				ph = LoaiPhong_db.selectOneLP(ma);
+				lp = LoaiPhong_db.selectOneLP(ma);
 				
-				if (ph != null) {
-					System.out.println("Thong tin phong: " + ph.get_maLoaiPhong() + "\t" + ph.get_loaiPhong()
-								+ "\t" + ph.get_giaPhong() + "\t" + ph.get_soNguoiToiDa());
+				if (lp != null) {
+					System.out.println("Thong tin Loai phong: " + lp.get_maLoaiPhong() + "\t" + lp.get_loaiPhong()
+								+ "\t" + lp.get_giaPhong() + "\t" + lp.get_soNguoiToiDa());
 					
 					System.out.println("\n\n                  ===============================================");
 					System.out.println("	          =           SUA THONG TIN LOAI PHONG          =");
@@ -128,14 +128,13 @@ public class LoaiPhong_ap {
 					System.out.println("	          =              0. Thoat                       =");
 					System.out.println("	          =                                             =");
 					System.out.println("	          ===============================================");
-					System.out.println("\n\t\t\t    Moi ban nhap lua chon: ");
+					System.out.print("\n\t\t\t    Moi ban nhap lua chon: ");
 					
 					String luachon;
 					boolean flag = false;
 					int giaPhong_moi = 0;
 			        int soNguoi_moi = 0;
-			        String maLoaiPhong_moi = "";
-			        String loaiphong = "";
+			        String loaiPhong_moi = "";
 					
 					luachon = sc.nextLine();
 					switch (luachon)
@@ -143,10 +142,9 @@ public class LoaiPhong_ap {
 						case "1":				
 							System.out.println("	          1. SUA LOAI PHONG");
 							System.out.println("\n\t\t     Nhap loai phong moi: ");
-							loaiphong = sc.nextLine();
-							loaiphong = CheckDataInput.chuannHoa_str(loaiphong);
-							ph.set_loaiPhong(loaiphong);
-							if (LoaiPhong_db.update(ph))
+							loaiPhong_moi = sc.nextLine();
+							lp.set_loaiPhong(CheckDataInput.chuannHoa_str(loaiPhong_moi));
+							if (LoaiPhong_db.update(lp))
 							{
 								System.out.println("Succes!");
 							}
@@ -159,10 +157,10 @@ public class LoaiPhong_ap {
 							do {
 								try
 								{
-									System.out.println("\n\t\t     Nhap gia phong moi: ");
-									String giaPhong_input = sc.nextLine();
-									giaPhong_moi = Integer.parseInt(giaPhong_input);
-									ph.set_giaPhong((giaPhong_moi));
+									System.out.print("\n\t\t     Nhap gia phong moi: ");
+									String giaPhongStr = sc.nextLine();
+									giaPhong_moi = Integer.parseInt(giaPhongStr );
+									lp.set_giaPhong((giaPhong_moi));
 									flag = false;
 								}
 								catch (Exception e) 
@@ -172,7 +170,7 @@ public class LoaiPhong_ap {
 								}
 							} while (flag);
 
-							if (LoaiPhong_db.update(ph))
+							if (LoaiPhong_db.update(lp))
 							{
 								System.out.println("Succes!");
 							}
@@ -185,20 +183,20 @@ public class LoaiPhong_ap {
 							do {
 								try
 								{
-									System.out.println("\n\t\t     Nhap so nguoi toi da moi: ");
-									String soNguoi_input = sc.nextLine();
-									soNguoi_moi = Integer.parseInt(soNguoi_input);
+									System.out.print("\n\t\t     Nhap so nguoi toi da moi: ");
+									String soNguoiStr = sc.nextLine();
+									soNguoi_moi = Integer.parseInt(soNguoiStr);
 									flag = false;									
-									ph.set_soNguoiToiDa((soNguoi_moi));
+									lp.set_soNguoiToiDa((soNguoi_moi));
 								}
 								catch (Exception e) 
 								{
 									flag = true;
-									System.out.println("\n\t\t     So nguoi khong dung dinh dang!");
+									System.out.print("\n\t\t     So nguoi khong dung dinh dang!");
 								}
 							} while (flag);
 
-							if (LoaiPhong_db.update(ph))
+							if (LoaiPhong_db.update(lp))
 							{
 								System.out.println("Succes!");
 							}
@@ -209,18 +207,17 @@ public class LoaiPhong_ap {
 							System.out.println("	          4. SUA TAT CA");
 							//Nhap Loai phong:
 							System.out.println("\n\t\t     Nhap loai phong moi: ");
-							loaiphong = sc.nextLine();
-							loaiphong = CheckDataInput.chuannHoa_str(loaiphong);
-							ph.set_loaiPhong(loaiphong);
+							loaiPhong_moi = sc.nextLine();
+							lp.set_loaiPhong(CheckDataInput.chuannHoa_str(loaiPhong_moi));
 							
 							// Nhap gia phong:
 							do {
 								try
 								{
 									System.out.println("\n\t\t     Nhap gia phong moi: ");
-									String giaPhong_input = sc.nextLine();
-									giaPhong_moi = Integer.parseInt(giaPhong_input);
-									ph.set_giaPhong((giaPhong_moi));
+									String giaPhongStr = sc.nextLine();
+									giaPhong_moi = Integer.parseInt(giaPhongStr);
+									lp.set_giaPhong((giaPhong_moi));
 									flag = false;
 								}
 								catch (Exception e) 
@@ -235,10 +232,10 @@ public class LoaiPhong_ap {
 								try
 								{
 									System.out.println("\n\t\t     Nhap so nguoi toi da moi: ");
-									String soNguoi_input = sc.nextLine();
-									soNguoi_moi = Integer.parseInt(soNguoi_input);
+									String soNguoiStr = sc.nextLine();
+									soNguoi_moi = Integer.parseInt(soNguoiStr);
 									flag = false;									
-									ph.set_soNguoiToiDa((soNguoi_moi));
+									lp.set_soNguoiToiDa((soNguoi_moi));
 								}
 								catch (Exception e) 
 								{
@@ -248,7 +245,7 @@ public class LoaiPhong_ap {
 							} while (flag);
 	
 							//update
-							if (LoaiPhong_db.update(ph))
+							if (LoaiPhong_db.update(lp))
 							{
 								System.out.println("Succes!");
 							}
@@ -262,11 +259,11 @@ public class LoaiPhong_ap {
 					}
 
 				} else {
-					System.out.println("Thong tin khach hang khong ton tai trong he thong");
+					System.out.println("Thong tin loai phong khong ton tai trong he thong");
 					
 				}
 				
-			} while (ph == null);
+			} while (lp == null);
 			
 			
 		}

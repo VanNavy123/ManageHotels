@@ -1,9 +1,6 @@
 package hotel.app;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 import hotel.db.Khach_db;
 import hotel.oop.Khach;
@@ -14,17 +11,17 @@ public class Khach_ap
 	
 	//Them moi khach hang:
 	public static void nhapThongTinKhach() {
-		System.out.println("======Nhap thong tin Khach muon thue phong=======");
+		System.out.print("======Nhap thong tin Khach muon thue phong=======");
 		
 		String choice = "";
 
 		do {			
 			//Nhap thong tin khach
-			System.out.println("Nhap Ho Ten: ");
+			System.out.print("Nhap Ho Ten: ");
 			String hoTen = sc.nextLine();
-			System.out.println("Nhap CMND: ");
+			System.out.print("Nhap CMND: ");
 			String cmnd = sc.nextLine();
-			System.out.println("Nhap dia chi thuong tru: ");
+			System.out.print("Nhap dia chi thuong tru: ");
 			String diaChi = sc.nextLine();
 
 			//Nhap ngay thang nam sinh:
@@ -34,19 +31,19 @@ public class Khach_ap
 			{
 				try
 				{
-					System.out.println("Nhap ngay sinh (Nhap ngay/thang/nam): ");
+					System.out.print("Nhap ngay sinh (Nhap ngay/thang/nam): ");
 					String ngaySinhStr = sc.nextLine();
-					ngaySinh = CheckDataInput.ConvertToDateVN(ngaySinhStr);
+					ngaySinh = CheckDataInput.convertToDateVN(ngaySinhStr);
 					if (ngaySinh == null) 
 						{
 							flag = true;
-							System.out.println("Nhap ngay sinh khong dung dinh dang!");
+							System.out.print("Nhap ngay sinh khong dung dinh dang!");
 						}
 					else flag = false;
 				}
 				catch (Exception e) {
 					flag = true;
-					System.out.println("Nhap ngay sinh khong dung dinh dang!");
+					System.out.print("Nhap ngay sinh khong dung dinh dang!");
 				}
 
 			} while (flag);
@@ -55,11 +52,11 @@ public class Khach_ap
 									CheckDataInput.chuannHoa_str(diaChi), ngaySinh);
 			if (Khach_db.insert(kh))
 			{
-				System.out.println("Them moi khach hang thanh cong!");
+				System.out.print("Them moi khach hang thanh cong!");
 			}
 			else
 			{
-				System.out.println("Them moi khach hang that bai. Vui long kiem tra lai!");
+				System.out.print("Them moi khach hang that bai. Vui long kiem tra lai!");
 			}
 			
 			//Cho lua chon co nhap tiep khong
@@ -117,7 +114,7 @@ public class Khach_ap
 			kh = Khach_db.selectOneMK(maKhach);
 			
 			if (kh != null) {
-				System.out.println("Thong tin khach hang: " + kh.toString());
+				System.out.print("Thong tin khach hang: " + kh.toString());
 				
 				System.out.println("\n\n                  ===============================================");
 				System.out.println("	          =              SUA THONG TIN KHACH            =");
@@ -134,12 +131,14 @@ public class Khach_ap
 				System.out.println("\n\t\t\t    Moi ban nhap lua chon: ");
 				
 				String luachon;
+				boolean flag = false;
+				Date ngaySinh = null;
 				luachon = sc.nextLine();
 				switch (luachon)
 				{		
 					case "1":				
 						System.out.println("	          1. SUA HO TEN");
-						System.out.println("\n\t\t     Nhap ho ten moi: ");
+						System.out.print("\n\t\t     Nhap ho ten moi: ");
 						String hoTen_moi = sc.nextLine();
 
 						kh.setHoTen(CheckDataInput.chuannHoa_str(hoTen_moi));
@@ -152,7 +151,7 @@ public class Khach_ap
 						
 					case "2":
 						System.out.println("	          2. SUA SO CMND");
-						System.out.println("\n\t\t     Nhap so CMND moi: ");
+						System.out.print("\n\t\t     Nhap so CMND moi: ");
 						String cmnd = sc.nextLine();
 
 						kh.setCmnd(cmnd);
@@ -165,10 +164,29 @@ public class Khach_ap
 						
 					case "3":
 						System.out.println("	          3. SUA NGAY SINH");
-						System.out.println("\n\t\t     Nhap ngay sinh moi: ");
-						String ngaySinh = sc.nextLine();
 
-						kh.setNgaySinh(Date.valueOf(ngaySinh));
+						do
+						{
+							try
+							{
+								System.out.print("\n\t\t     Nhap ngay sinh moi (Nhap ngay/thang/nam): ");
+								String ngaySinhStr = sc.nextLine();
+								ngaySinh = CheckDataInput.convertToDateVN(ngaySinhStr);
+								if (ngaySinh == null) 
+									{
+										flag = true;
+										System.out.print("Nhap ngay sinh khong dung dinh dang!");
+									}
+								else flag = false;
+							}
+							catch (Exception e) {
+								flag = true;
+								System.out.print("Nhap ngay sinh khong dung dinh dang!");
+							}
+
+						} while (flag);
+						
+						kh.setNgaySinh(ngaySinh);
 						if (Khach_db.update(kh))
 						{
 							System.out.println("Succes!");
@@ -178,7 +196,7 @@ public class Khach_ap
 						
 					case "4":
 						System.out.println("	          4. SUA DIA CHI");
-						System.out.println("\n\t\t     Nhap dia chi moi: ");
+						System.out.print("\n\t\t     Nhap dia chi moi: ");
 						String diaChi = sc.nextLine();
 
 						kh.setDiaChi(CheckDataInput.chuannHoa_str(diaChi));
@@ -190,18 +208,37 @@ public class Khach_ap
 						break;
 						
 					case "5":
-						System.out.println("	          4. SUA TAT CA");
+						System.out.println("	          5. SUA TAT CA");
 						
-						System.out.println("\n\t\t     Nhap ho ten moi: ");
+						System.out.print("\n\t\t     Nhap ho ten moi: ");
 						kh.setHoTen(CheckDataInput.chuannHoa_str(sc.nextLine()));
 						
-						System.out.println("\n\t\t     Nhap so CMND moi: ");
+						System.out.print("\n\t\t     Nhap so CMND moi: ");
 						kh.setCmnd(sc.nextLine());
 						
-						System.out.println("\n\t\t     Nhap ngay sinh moi: ");
-						kh.setNgaySinh(Date.valueOf(sc.nextLine()));
+						do
+						{
+							try
+							{
+								System.out.print("\n\t\t     Nhap ngay sinh moi (Nhap ngay/thang/nam): ");
+								String ngaySinhStr = sc.nextLine();
+								ngaySinh = CheckDataInput.convertToDateVN(ngaySinhStr);
+								if (ngaySinh == null) 
+									{
+										flag = true;
+										System.out.print("Nhap ngay sinh khong dung dinh dang!");
+									}
+								else flag = false;
+							}
+							catch (Exception e) {
+								flag = true;
+								System.out.print("Nhap ngay sinh khong dung dinh dang!");
+							}
+
+						} while (flag);
+						kh.setNgaySinh(ngaySinh);
 						
-						System.out.println("\n\t\t     Nhap dia chi moi: ");
+						System.out.print("\n\t\t     Nhap dia chi moi: ");
 						kh.setDiaChi(CheckDataInput.chuannHoa_str(sc.nextLine()));
 						
 						if (Khach_db.update(kh))

@@ -20,7 +20,7 @@ public class CheckDataInput {
     }
     
     //Ham chuan hoa ngay thang nam viet nam:
-    public static Date ConvertToDateVN(String str)
+    public static Date convertToDateVN(String str)
     {
     	try
     	{

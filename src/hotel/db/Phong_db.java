@@ -225,4 +225,41 @@ public class Phong_db {
 		
 		return tmp;
 	}
+	
+	public static ArrayList<Phong> selectPhong(int trangTh) {
+		ArrayList<Phong> List_PTrong = new ArrayList<Phong>();
+		String query = "Select * from Phong where TrangThai = ?";
+		
+		Connection connect = null;
+		PreparedStatement prStmt = null;
+
+		try {
+			connect = Provide_db.getConnection();
+			prStmt = connect.prepareStatement(query);
+			prStmt.setInt(1, trangTh);
+			ResultSet rs = prStmt.executeQuery();
+			while (rs.next()) {
+				String maPhong = rs.getString("MaPhong");
+				int trangThai = rs.getInt("TrangThai");
+				String maLoaiPhong = rs.getString("MaLoaiPhong");
+				String moTa = rs.getString("MoTa");
+				
+				Phong ph = new Phong(maPhong, trangThai, maLoaiPhong, moTa);
+				List_PTrong.add(ph);
+			}
+		
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			Provide_db.closeStatment(prStmt);
+			Provide_db.closeConnection(connect);
+		}
+		return List_PTrong;
+	}
+	
 }
+

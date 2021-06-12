@@ -18,7 +18,7 @@ public class Phong_ap {
 	private static Scanner sc = new Scanner(System.in);
 	//Them moi phong:
 			public static void nhapThongTinPhong() {
-				System.out.println("======Nhap thong tin phong=======");
+				System.out.println("============Nhap thong tin phong============");
 				
 				String luaChon = "";
 				do {
@@ -34,15 +34,15 @@ public class Phong_ap {
 					Phong ph = new Phong(creatMaPhong(),trangThaiPhong, maLoaiPhong, moTa);
 					if (Phong_db.insert(ph))
 					{
-						System.out.println("Them moi loai phong thanh cong!");
+						System.out.println("Them moi phong thanh cong!");
 					}
 					else
 					{
-						System.out.println("Them moi khach hang that bai. Vui long kiem tra lai!");
+						System.out.println("Them moi phong that bai. Vui long kiem tra lai!");
 					}
 					
 					//Cho lua chon co nhap tiep khong
-					System.out.print("Ban co muon nhap them khach hang nao nua khong (Y/N): ");
+					System.out.print("Ban co muon nhap them phong nao nua khong (Y/N): ");
 					luaChon = sc.nextLine();
 				} while ("Y".equalsIgnoreCase(luaChon));
 			}
@@ -289,6 +289,17 @@ public class Phong_ap {
 			}
 			
 		} while (ph == null);
+	}
+	
+	public static void hienThiDanhSachPhongTrong(){
+		ArrayList arr = null;
+		
+		arr = Phong_db.selectPhong(0);
+		
+        for (int i = 0; i < arr.size(); i++) 
+        {
+			System.out.println("\t   " + (i + 1) + ". "+ arr.get(i).toString());
+		}
 	}
 	
 }

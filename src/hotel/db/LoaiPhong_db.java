@@ -163,6 +163,7 @@ public class LoaiPhong_db {
 			preparedStm.setString(1, lp.get_loaiPhong());
 			preparedStm.setInt(2, lp.get_giaPhong());
 			preparedStm.setInt(3, lp.get_soNguoiToiDa());
+			preparedStm.setString(4, lp.get_maLoaiPhong());
 //			int numberRecordUpdated = preparedStm.executeUpdate();//dung cho update, insert, delete
 			if (preparedStm.executeUpdate() > 0)
 			{
