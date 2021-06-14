@@ -15,9 +15,11 @@ public class Main {
 	//	LoaiPhong_ap.nhapThongTinLoaiPhong();
 	//	LoaiPhong_ap.suaThongTinLoaiPhong();
 	//	Phong_ap.suaThongTinPhong();
-	//	2.Phong_ap.hienThiDanhSachPhongTrong();
+	//	2. Phong_ap.hienThiDanhSachPhongTrong();
 		//3.hienThiDanhSachKhach
-		ThuePhong_ap.themThuePhong();
+		//ThuePhong_ap.themThuePhong();
+		//ThuePhong_ap.hienThiDanhSachThuePhong();
+		ChiTietThue_ap.hienThiChiTietThuePhong();
 		
 		
 		

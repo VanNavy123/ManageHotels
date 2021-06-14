@@ -68,12 +68,14 @@ public class Khach_ap
 	//Hien thi khach thue phong:
 	public static void showKhach()
 	{
-		System.out.println("Ma khach" + "\t|\t" + "Ho ten" + "\t\t|\t" 
-				+  "CMND" + "\t\t|\t" +  "Dia chi" + "\t\t|\t" +  "Ngay sinh");
+		System.out.println("Ma khach" + "   " + "Ho ten" + " " 
+				+ "\t\t\t" + "CMND" + "\t\t" +  "Dia chi" + "\t\t\t " +  "Ngay sinh");
+		System.out.println("======================================================================================================");
 		for (Khach kh : Khach_db.select()) {
-			System.out.println(kh.getMaKhach() + "\t|\t" + kh.getHoTen() +"\t|\t" 
-					+ kh.getCmnd() +"\t|\t" + kh.getDiaChi() +"\t|\t" + kh.getNgaySinh());
+			System.out.println(kh.getMaKhach() + "  " +  kh.getHoTen() +"\t\t" 
+					+ kh.getCmnd() +" \t " + "   " +  kh.getDiaChi() +"   "+ "\t\t" + kh.getNgaySinh());
 		}
+		System.out.println("======================================================================================================");
 	}
 	
 	//Ham tu dong sinh ma khach (ma khach co do dai = 8):

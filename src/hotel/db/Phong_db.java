@@ -226,9 +226,10 @@ public class Phong_db {
 		return tmp;
 	}
 	
-	public static ArrayList<Phong> selectPhong(int trangTh) {
-		ArrayList<Phong> List_PTrong = new ArrayList<Phong>();
-		String query = "Select * from Phong where TrangThai = ?";
+	public static void  selectPhong(int trangTh) {
+		//ArrayList<Phong> List_PTrong = new ArrayList<Phong>();
+		String query = "Select Phong.MaPhong, Phong.MaloaiPhong, LoaiPhong.LoaiPhong, LoaiPhong.SoNguoiToiDa, LoaiPhong.GiaPhong, Phong.MoTa from Phong, LoaiPhong "
+				+ "where Phong.MaLoaiPhong = LoaiPhong.MaLoaiPhong and TrangThai = ?";
 		
 		Connection connect = null;
 		PreparedStatement prStmt = null;
@@ -240,12 +241,21 @@ public class Phong_db {
 			ResultSet rs = prStmt.executeQuery();
 			while (rs.next()) {
 				String maPhong = rs.getString("MaPhong");
-				int trangThai = rs.getInt("TrangThai");
+				String loaiPhong = rs.getString("LoaiPhong");
 				String maLoaiPhong = rs.getString("MaLoaiPhong");
+				String soNguoiTD = rs.getString("SoNguoiToiDa");
+				int giaPhong = rs.getInt("GiaPhong");
 				String moTa = rs.getString("MoTa");
+				System.out.print(maPhong);
+				System.out.print(" "+ maLoaiPhong);
+				System.out.print(" " +loaiPhong);
+				System.out.print("    "+ soNguoiTD);
+				System.out.print("       "+giaPhong);
+				System.out.print("   " +moTa);
 				
-				Phong ph = new Phong(maPhong, trangThai, maLoaiPhong, moTa);
-				List_PTrong.add(ph);
+				System.out.println("\n-------------------------------------------------------------------------------");
+			//	Phong ph = new Phong(maPhong, trangThai, maLoaiPhong, moTa);
+			//	List_PTrong.add(ph);
 			}
 		
 		} 
@@ -258,8 +268,10 @@ public class Phong_db {
 			Provide_db.closeStatment(prStmt);
 			Provide_db.closeConnection(connect);
 		}
-		return List_PTrong;
+		
 	}
+	
+	
 	
 }
 

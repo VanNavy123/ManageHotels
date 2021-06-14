@@ -4,7 +4,7 @@ public class ChiTietO {
 	private String maThuePhong;
 	private String maKhach;
 	private String maPhong;
-	private String truongNhom;
+	private int truongNhom;
 
 	
 	public String get_maThuePhong() {
@@ -37,17 +37,17 @@ public class ChiTietO {
 	}
 
 
-	public String get_truongNhom() {
+	public int get_truongNhom() {
 		return truongNhom;
 	}
 
 
-	public void set_truongNhom(String truongNhom) {
+	public void set_truongNhom(int truongNhom) {
 		this.truongNhom = truongNhom;
 	}
 	
 	
-	public ChiTietO(String maThuePhong, String maKhach, String maPhong, String truongNhom) {
+	public ChiTietO(String maThuePhong, String maKhach, String maPhong, int truongNhom) {
 		super();
 		this.maThuePhong = maThuePhong;
 		this.maKhach = maKhach;

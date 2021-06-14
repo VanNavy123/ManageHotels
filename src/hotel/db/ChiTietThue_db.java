@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import hotel.oop.ChiTietThue;
 import hotel.oop.ThuePhong;
@@ -82,7 +83,54 @@ public class ChiTietThue_db {
 		return maPhong;
 	}
 	
-	
+	public static void  selectThuePhong(String maThuePhong) {
+		String query = "Select ThuePhong.TongChiPhi, ChiTietThue.MaPhong, Phong.MaloaiPhong, LoaiPhong.GiaPhong, ChiTietThue.NgayThue, ChiTietThue.NgayTra "
+				+ "from ChiTietThue, Phong, LoaiPhong, ThuePhong "
+				+ "where ThuePhong.MaThuePhong = ? "
+				+ "and ThuePhong.MaThuePhong = ChiTietThue.MaThuePhong "
+				+ "and ChiTietThue.MaPhong = Phong.MaPhong "
+				+ "and Phong.MaLoaiPhong = LoaiPhong.MaLoaiPhong";
+		
+		Connection connect = null;
+		PreparedStatement prStmt = null;
+
+		try {
+			connect = Provide_db.getConnection();
+			prStmt = connect.prepareStatement(query);
+			prStmt.setString(1, maThuePhong);
+			ResultSet rs = prStmt.executeQuery();
+			while (rs.next()) {
+				String maPhong = rs.getString("MaPhong");
+				String maLoaiPhong = rs.getString("MaLoaiPhong");
+				int giaPhong = rs.getInt("GiaPhong");
+				Date ngayThue = rs.getDate("NgayThue");
+				Date ngayTra = rs.getDate("NgayTra");
+				int tongChiPhi = rs.getInt("TongChiPhi");
+				System.out.print(maPhong);
+				System.out.print(" "+ maLoaiPhong);
+				System.out.print(" " + giaPhong);
+				System.out.print("    "+ ngayThue);
+				System.out.print("       "+ngayTra);
+				System.out.print("       "+tongChiPhi);
+				
+				System.out.println("\n-------------------------------------------------------------------------------");
+				
+			
+			}
+		
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			Provide_db.closeStatment(prStmt);
+			Provide_db.closeConnection(connect);
+		}
+		
+		
+	}
 	public static boolean Update() {
 		//Nội dung hàm Update
 		

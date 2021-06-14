@@ -9,6 +9,7 @@ import java.util.Scanner;
 import hotel.db.Khach_db;
 import hotel.db.LoaiPhong_db;
 import hotel.db.Phong_db;
+import hotel.db.ThuePhong_db;
 import hotel.oop.Khach;
 import hotel.oop.LoaiPhong;
 import hotel.oop.Phong;
@@ -292,14 +293,11 @@ public class Phong_ap {
 	}
 	
 	public static void hienThiDanhSachPhongTrong(){
-		ArrayList arr = null;
-		
-		arr = Phong_db.selectPhong(0);
-		
-        for (int i = 0; i < arr.size(); i++) 
-        {
-			System.out.println("\t   " + (i + 1) + ". "+ arr.get(i).toString());
-		}
+	
+		System.out.println("Ma Phong" + " " + "MaLoaiPhong" +" " + "LoaiPhong" + " " 
+				+  "SoNguoiToiDa" + " " +  "GiaPhong" + " \t\t" +  "MoTa");
+		Phong_db.selectPhong(0);
 	}
+	
 	
 }

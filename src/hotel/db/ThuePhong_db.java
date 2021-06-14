@@ -139,6 +139,42 @@ public class ThuePhong_db {
 		return existKhachFlag;
 	}
 	
+	//Lay danh sach thue phong:
+			public static ArrayList<ThuePhong> select() {
+				String query = "Select * from ThuePhong";
+				ArrayList<ThuePhong> thueList = new ArrayList<ThuePhong>();
+				
+				Connection connect = null;
+				PreparedStatement prStmt = null;
+
+				try {
+					connect = Provide_db.getConnection();
+					prStmt = connect.prepareStatement(query);
+					ResultSet rs = prStmt.executeQuery();
+					while (rs.next()) {
+						String maThuePhong = rs.getString("MaThuePhong");
+						String maKhachThue = rs.getString("MaKhachThue");
+						int tongChiPhi = rs.getInt("TongChiPhi");
+
+						
+					ThuePhong thPh = new ThuePhong(maThuePhong,maKhachThue, tongChiPhi);
+						thueList.add(thPh);
+					}
+				
+				} 
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				} 
+				finally 
+				{
+					Provide_db.closeStatment(prStmt);
+					Provide_db.closeConnection(connect);
+				}
+				return thueList;
+			}
+			
+	
 	public static boolean Update() {
 		//Nội dung hàm Update
 		

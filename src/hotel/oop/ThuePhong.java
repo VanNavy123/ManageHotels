@@ -47,4 +47,11 @@ public class ThuePhong {
 	public ThuePhong() {
 		super();
 	}
+
+
+	@Override
+	public String toString() {
+		return maThuePhong + " " + maKhachThue + " "+  tongChiPhi;
+	}
+	
 }
