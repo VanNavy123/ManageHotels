@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 import hotel.oop.ChiTietThue;
 import hotel.oop.ThuePhong;
 
@@ -99,6 +100,7 @@ public class ChiTietThue_db {
 			prStmt = connect.prepareStatement(query);
 			prStmt.setString(1, maThuePhong);
 			ResultSet rs = prStmt.executeQuery();
+			int TongTien = 0;
 			while (rs.next()) {
 				String maPhong = rs.getString("MaPhong");
 				String maLoaiPhong = rs.getString("MaLoaiPhong");
@@ -111,12 +113,11 @@ public class ChiTietThue_db {
 				System.out.print(" " + giaPhong);
 				System.out.print("    "+ ngayThue);
 				System.out.print("       "+ngayTra);
-				System.out.print("       "+tongChiPhi);
-				
+				System.out.print("       "+ date_Date(ngayThue, ngayTra) * giaPhong);
+				TongTien += date_Date(ngayThue, ngayTra) * giaPhong;
 				System.out.println("\n-------------------------------------------------------------------------------");
-				
-			
 			}
+			System.out.print("Tong so tien can thanh toan: "+ TongTien);
 		
 		} 
 		catch (SQLException e) 
@@ -128,9 +129,16 @@ public class ChiTietThue_db {
 			Provide_db.closeStatment(prStmt);
 			Provide_db.closeConnection(connect);
 		}
-		
-		
 	}
+	
+	public static int date_Date (Date ngayThue, Date ngayTra)
+	{
+		long diff = ngayTra.getTime() - ngayThue.getTime();  //don vi la mini giay
+		int soNgay = (int)(diff / (24*60 * 60 * 1000));
+		if (soNgay == 0) return 1;
+		else return soNgay;
+	}
+		
 	public static boolean Update() {
 		//Nội dung hàm Update
 		

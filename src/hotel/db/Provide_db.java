@@ -6,17 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Provide_db {
-	private static String DB_URL = "jdbc:sqlserver://localhost:1433;"
-			+ "databaseName=ManageHotel;";
-	private static String USER_NAME = "sa";
-	private static String PASSWORD = "12345678";
+//public class Provide_db {
+//	private static String DB_URL = "jdbc:sqlserver://localhost:1433;"
+//			+ "databaseName=ManageHotel;";
+//	private static String USER_NAME = "sa";
+//	private static String PASSWORD = "12345678";
 
-/*public class Provide_db {
+public class Provide_db {
 	private static String DB_URL = "jdbc:sqlserver://103.127.206.198;"
 								+ "databaseName=FakeQL;";
 	private static String USER_NAME = "thin";
-	private static String PASSWORD = "thin@123";*/
+	private static String PASSWORD = "thin@123";
 
     /**
      * Create connection
